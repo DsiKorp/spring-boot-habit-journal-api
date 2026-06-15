@@ -16,6 +16,7 @@ public interface HabitMapper {
 
     @Mapping(source = "name", target = "name")
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "logEntries", ignore = true)
     Habit toHabit(HabitRequestDTO habitRequestDTO);
 
     default HabitResponseDTO toHabitDto(Habit habit) {
