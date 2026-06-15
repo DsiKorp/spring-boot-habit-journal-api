@@ -1,6 +1,7 @@
-package com.habitjournal.habit_journal_api.mongo_app.controller.dto;
+package com.habitjournal.habit_journal_api.mongo_app.controller;
 
 import com.habitjournal.habit_journal_api.controller.dto.HabitRequestDTO;
+import com.habitjournal.habit_journal_api.mongo_app.controller.dto.HabitMResponseDTO;
 import com.habitjournal.habit_journal_api.mongo_app.service.HabitMongoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,11 @@ public class HabitMongoController {
     @GetMapping
     public ResponseEntity<List<HabitMResponseDTO>> findAllHabits() {
         return ResponseEntity.ok(habitService.findAllHabits());
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<List<HabitMResponseDTO>> getActiveHabits(@RequestParam(defaultValue = "7") int days) {
+        return ResponseEntity.ok(habitService.findHabitsLoggedSince(days));
     }
 
 }
